@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div class="jumbotron">
+        <h1 class="display-4">Welcome to the Usesoft Crypto News</h1>
+        <p class="lead">Your source for Crypto currencies and Blockchain info!</p>
+    </div>
+
+
+    <table class="table table-striped table-hover table-bordered">
+        <thead>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Price</th>
+            <th scope="col">Day High</th>
+            <th scope="col">Day Low</th>
+            <th scope="col">MarketCap</th>
+        </tr>
+        </thead>
+
+        <tbody>
+            {% for key,value in price.DISPLAY.items %}
+                    <tr>
+                        <td>{{ key }}</td>
+                        <td>{{ value.BRL.PRICE }}</td>
+                        <td>{{ value.BRL.HIGHDAY }}</td>
+                        <td>{{ value.BRL.LOWDAY }}</td>
+                        <td>{{ value.BRL.MKTCAP}}</td>
+                    </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="container">
+        <div class="row">
+            {% for x in api.Data %}
+            <div class="col-sm">
+                <div class="card" style="width: 18rem;">
+                    <img class="card-img-top" src="{{x.imageurl}}" alt="{{x.source}}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{x.title}}</h5>
+                        <p class="card-text">{{ x.body }}</p>
+                        <a href="{{x.url}}" class="btn btn-primary">Read more...</a>
+                    </div>
+                </div>
+             </div>
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock  %}
